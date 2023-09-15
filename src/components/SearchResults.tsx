@@ -40,6 +40,8 @@ export class SearchResults extends React.Component<{ state: SearchResultsState, 
             return (
                 <Grid key={item.key} item sm={12} md={6}>
                     <Card raised>
+                        {/* #############マークアップ、検索した結果を下記のエリアに表示するアイテムのリンクエリアだ、
+                        リンクをクリックしたら、AppState.tsファイルの中のshowDetailsメソッドを呼び出す################# */}
                         <CardHeader
                             avatar={
                                 <Link onClick={() => state.showDetails(item)}>

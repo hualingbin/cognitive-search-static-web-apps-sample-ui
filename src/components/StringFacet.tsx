@@ -32,6 +32,8 @@ export class StringFacet extends React.Component<{ state: StringFacetState, inPr
                 return (
 
                     <FacetValueListItem key={facetValue.value} dense disableGutters>
+                         {/* #############マークアップ、検索した結果画面の左側のフィルタの詳細アイテム部分だ、
+                         チェックボックスをチェックしたら、元のデータをフィルタします、################# */}
                         <Checkbox edge="start" disableRipple
                             disabled={this.props.inProgress}
                             checked={facetValue.isSelected}

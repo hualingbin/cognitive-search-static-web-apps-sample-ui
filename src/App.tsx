@@ -26,6 +26,7 @@ export default class App extends React.Component<{ state: AppState }> {
     render(): JSX.Element {
 
         const state = this.props.state;
+        console.log('##############state:',state);
 
         return (<>
 
@@ -84,7 +85,7 @@ export default class App extends React.Component<{ state: AppState }> {
                 </Toolbar></BottomBar>
 
             </LandingDiv>) : (<>
-
+                {/* #############マークアップ、検索した結果画面の左側のフィルタの部分です、################# */}
                 <Sidebar>
                     <Facets state={state.searchResultsState.facetsState} inProgress={state.inProgress} />
                 </Sidebar>
@@ -98,11 +99,14 @@ export default class App extends React.Component<{ state: AppState }> {
                                 geoRegionSelected={(points) => state.searchResultsState.facetsState.geoRegion = points}
                             />
                     )}
+                    {/* #############マークアップ、検索した結果を下記のエリアに表示します################# */}
                     <SearchResults state={state.searchResultsState} inProgress={state.inProgress} />
                 </Main>
 
             </>)}
 
+            {/* #############マークアップ、AppState.tsファイルの中のshowDetailsメソッドを呼び出して、下記のダイアログ画面でデータを表示します################# */}
+                       
             {!!state.detailsState && (
                 <DetailsDialog state={state.detailsState} hideMe={() => state.hideDetails()} azureMapSubscriptionKey={state.serverSideConfig.AzureMapSubscriptionKey}/>
             )}

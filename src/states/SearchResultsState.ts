@@ -56,12 +56,13 @@ export class SearchResultsState extends ErrorMessageState {
 
     constructor(readonly showDetails: (r: SearchResult) => void, private loadMapResults: (s) => void, private _config: IServerSideConfig) {
         super();
+        console.log('########SearchResultsStateに入ります');
         this.initializeWindowOnPopState();
     }
 
     // Proceed with search
     search(filterClauseFromQueryString: string = null) {
-
+        console.log('########searchボタンを押すと、SearchResultsStateのsearchメソッドに入ります');
         if (this._inProgress) {
             return;
         }
@@ -97,8 +98,9 @@ export class SearchResultsState extends ErrorMessageState {
         const uri = `${BackendUri}${this.searchClauseAndQueryType}${this._filterClause}&${facetsClause}&$select=${fields}${highlightClause}&$top=${PageSize}&$skip=${this.searchResults.length}`;
 
         this._inProgress = true;
+        console.log('######SearchResultsState uri:',uri);
         axios.get(uri).then(response => {
-
+            console.log('######loadMoreResultsメソッドを実行し、返却値を取得します:',response);
             this._totalResults = response.data['@odata.count'];
 
             const facetValues = response.data['@search.facets'];
@@ -131,6 +133,7 @@ export class SearchResultsState extends ErrorMessageState {
                 this._allResultsLoaded = true;
             } else {
                 this.searchResults.push(...results);
+                console.log('######loadMoreResultsメソッドを実行し、返却値を取得し、searchResults変数に渡す:',this.searchResults);
             }
 
             this._inProgress = false;
@@ -222,6 +225,7 @@ export class SearchResultsState extends ErrorMessageState {
             // When handling onPopState we shouldn't be re-pushing current URL into history
             this._doPushState = false;
             this.searchString = pushState.query;
+            console.log('########pushState.filterClause:',pushState.filterClause);
             this.search(pushState.filterClause);
         }
     }

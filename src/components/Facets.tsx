@@ -30,7 +30,7 @@ export class Facets extends React.Component<{ state: FacetsState, inProgress: bo
         return (<FacetList component="nav">
 
             {state.facets.map(facetState => {
-
+                console.log('#########Facets:',facetState.facetType)
                 var facetComponent: JSX.Element = null;
                 switch (facetState.facetType) {
                     case FacetTypeEnum.BooleanFacet:
@@ -43,6 +43,8 @@ export class Facets extends React.Component<{ state: FacetsState, inProgress: bo
                         facetComponent = (<DateFacet state={facetState.state as DateFacetState} inProgress={this.props.inProgress} />);
                     break;
                     case FacetTypeEnum.StringFacet:
+                        console.log('#########FacetTypeEnum.StringFacet:',FacetTypeEnum.StringFacet)
+                        {/* #############マークアップ、検索した結果画面の左側のフィルタの詳細アイテム部分です、################# */}
                         facetComponent = (<StringFacet state={facetState.state as StringFacetState} inProgress={this.props.inProgress} />);
                     break;
                     case FacetTypeEnum.StringCollectionFacet:
@@ -54,15 +56,16 @@ export class Facets extends React.Component<{ state: FacetsState, inProgress: bo
                 const getHintTextFunc = facetComponent?.type.getHintText;
 
                 return (<div key={facetState.displayName}>
-                
+                    {/* #############マークアップ、検索した結果画面の左側のフィルタの部分です、################# */}
                     <FacetListItem disableRipple={true} button onClick={() => state.toggleExpand(facetState.fieldName)}>
+                        {/* #############マークアップ、検索した結果画面の左側のフィルタのTitle文字部分です、################# */}
                         <ListItemText
                             primary={facetState.displayName}
                             secondary={getHintTextFunc ? getHintTextFunc(facetState.state) : ''}
                         />
                         {!!facetState.isExpanded ? <ExpandLess /> : <ExpandMore />}
                     </FacetListItem>
-
+                    {/* #############マークアップ、検索した結果画面の左側のフィルタの詳細アイテム部分です、################# */}
                     <Collapse in={facetState.isExpanded} timeout={200} unmountOnExit>
                         {facetComponent}
                     </Collapse>

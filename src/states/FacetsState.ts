@@ -26,7 +26,6 @@ export class FacetsState {
     
     // Expands this facet and collapses all others.
     toggleExpand(facetName: string) {
-        
         const selectedFacet = this._facets.find(f => f.fieldName === facetName);
 
         if (!!selectedFacet.isExpanded) {

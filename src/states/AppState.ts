@@ -20,6 +20,7 @@ export class AppState {
     // Login state and user info
     readonly loginState: LoginState = new LoginState();
 
+    
     // State of search results shown as a list
     readonly searchResultsState: SearchResultsState = new SearchResultsState(
         r => this.showDetails(r), s => this.mapResultsState?.loadResults(s), this.serverSideConfig)
@@ -43,6 +44,7 @@ export class AppState {
 
     // Shows Details dialog
     showDetails(result: SearchResult) {
+        console.log('################Shows Details dialog');
         this._detailsState = new DetailsDialogState(this.searchResultsState.searchString,
             result,
             this.areMapResultsEnabled ? this.serverSideConfig.CognitiveSearchGeoLocationField : null,

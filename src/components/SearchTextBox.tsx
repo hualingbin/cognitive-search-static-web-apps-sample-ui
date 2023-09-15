@@ -19,7 +19,7 @@ export class SearchTextBox extends React.Component<{ state: SearchResultsState, 
             <SearchTextWrapper>
 
                 <SearchButton variant="contained" color="primary" disabled={this.props.inProgress} onClick={() => state.search()}>
-                    Search
+                    Searchをマークアップ
                 </SearchButton>
                 
                 <SearchTextBoxDiv>
